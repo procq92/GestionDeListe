@@ -18,6 +18,13 @@ struct ArticleDetailView: View {
                 Spacer()
                 Text ("\(article.articlePriority)")
             }
+            .padding()
+            HStack {
+                Text("Rayon : \(article.articleShelf)")
+                Spacer()
+                
+            }
+            .padding()
         }
     }
 }

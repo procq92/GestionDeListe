@@ -14,7 +14,6 @@ struct ListView: View {
     var body: some View {
         VStack {
             HStack {
-                Button(action: dump, label: { Text("dump") })
                 TextField("nouvel article", text: $nomNouvelArticle)
                     .border(Color.gray, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
                 
@@ -29,12 +28,13 @@ struct ListView: View {
                 }
             }
             .navigationBarTitle(Text("Liste des articles"))
+            Button(action: dump, label: { Text("dump") })
         }
     }
     
     func creerNouvelArticle() {
         if nomNouvelArticle.count > 0 {
-            gestionDeListe.ajoutArticle(withName: nomNouvelArticle, inShelf: "big bazar", ofPriority: 1)
+            gestionDeListe.addArticle(withName: nomNouvelArticle, inShelf: "big bazar", ofPriority: 1)
             nomNouvelArticle = ""
         }
     }

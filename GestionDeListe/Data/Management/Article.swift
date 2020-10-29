@@ -24,6 +24,8 @@ class  Article :Identifiable {
     var articleName:String = ""
     var articleShelf:String = ""
     var articlePriority:Int = 0
+    var freqOfAppro:Int = 1
+    var inShelf:Shelf?
 
     init(nameOfArticle: String, shelf: String) {
         self.articleName = nameOfArticle

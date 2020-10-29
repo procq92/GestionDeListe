@@ -15,9 +15,6 @@ struct ArticleView: View {
 
         VStack(alignment: .leading) {
             HStack {
-                Button(action: changeLevel, label: {
-                    Image(systemName: "plus")
-                })
                 HStack(spacing: -4.0) {
                     Image(systemName: newLevel == 0 ? "rhombus" : "rhombus.fill")
                     Image(systemName: newLevel <= 1 ? "rhombus" : "rhombus.fill")
