@@ -18,9 +18,10 @@ struct ListeManagement {
     }
     
     @discardableResult
-    mutating func addArticle(withName articleName:String, inShelf shelfName:String, ofPriority priority:Int) -> Article {
-        let newArticle = Article(nameOfArticle: articleName, shelf: shelfName, priority: priority)
+    mutating func addArticle(withName articleName:String) -> Article {
+        let newArticle = Article(articleName: articleName)
         groceryList.append(newArticle)
+        storage.addNewArticle(article: newArticle)
         return newArticle
     }
 }

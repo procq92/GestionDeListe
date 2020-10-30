@@ -19,15 +19,15 @@ enum Unité {
 //}
 //struct Article : Identifiable {
 
-class  Article :Identifiable {
+struct Article :Identifiable {
     var id = UUID()
-    var articleName:String = ""
+    var articleName:String
     var articleShelf:String = ""
     var articlePriority:Int = 0
     var freqOfAppro:Int = 1
-    var inShelf:Shelf?
+//    var inShelf:Shelf?
 
-    init(nameOfArticle: String, shelf: String) {
+/*    init(nameOfArticle: String, shelf: String) {
         self.articleName = nameOfArticle
         self.articleShelf = shelf
     }
@@ -36,8 +36,8 @@ class  Article :Identifiable {
         self.init(nameOfArticle: nameOfArticle, shelf: shelf)
         self.articlePriority = priority
     }
-
-    func changeArticlePriority () {
+*/
+    mutating func changeArticlePriority () {
         print ("self = \(self.articleName) - \(self.articlePriority)")
         if self.articlePriority == 3 {
             self.articlePriority = 0
@@ -46,4 +46,9 @@ class  Article :Identifiable {
             self.articlePriority += 1
         }
     }
+    
+    mutating func changeArticleShelf (inShelf shelf:String) {
+        self.articleShelf = shelf
+    }
+    
 }

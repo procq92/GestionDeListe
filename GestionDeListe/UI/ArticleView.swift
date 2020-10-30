@@ -46,10 +46,10 @@ struct ArticleView: View {
 
 struct elementDeListe_Previews: PreviewProvider {
     static var previews: some View {
-        let articleExemple1 = Article (nameOfArticle: "tomate", shelf: "Légumes", priority: 0)
-        let articleExemple2 = Article (nameOfArticle: "poivrons", shelf: "Légumes", priority: 1)
-        let articleExemple3 = Article (nameOfArticle: "huile", shelf: "Épicerie", priority: 2)
-        let articleExemple4 = Article (nameOfArticle: "eau", shelf: "Boissons", priority: 3)
+        let articleExemple1 = Article (articleName: "tomate")
+        let articleExemple2 = Article (articleName: "poivrons")
+        let articleExemple3 = Article (articleName: "huile")
+        let articleExemple4 = Article (articleName: "eau")
         Group {
             ArticleView (article: articleExemple1)
                 .previewLayout(.sizeThatFits)

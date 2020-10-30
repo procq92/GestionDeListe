@@ -34,7 +34,7 @@ struct ListView: View {
     
     func creerNouvelArticle() {
         if nomNouvelArticle.count > 0 {
-            gestionDeListe.addArticle(withName: nomNouvelArticle, inShelf: "big bazar", ofPriority: 1)
+            gestionDeListe.addArticle(withName: nomNouvelArticle)
             nomNouvelArticle = ""
         }
     }

@@ -37,23 +37,67 @@ class CoreDataStorage {
         return groceryList
     }
     
+    func addNewArticle (article:Article) {
+        let newCDArticle = CDArticle (context: context)
+        newCDArticle.id = article.id
+        newCDArticle.articleName = article.articleName
+        newCDArticle.articleShelf = article.articleShelf
+        newCDArticle.articlePriority = Int16(article.articlePriority)
+        newCDArticle.freqOfAppro = Int16(article.freqOfAppro)
+        saveDataInCoreData()
+   }
+    
     func fetchShelfList () -> [Shelf] {
-        return []
+        let shelfList:[Shelf]
+        let fetchRequest:NSFetchRequest<CDShelf> = CDShelf.fetchRequest()
+        if let rawShelfList = try? context.fetch(fetchRequest) {
+            shelfList = rawShelfList.compactMap({ (rawShelf) -> Shelf? in
+                Shelf (fromCoreDataShelf: rawShelf)
+            })
+        }
+        else {
+            shelfList = []
+        }
+        return shelfList
+    }
+    
+    private func saveDataInCoreData () {
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                print ("Erreur pendant la sauvegarde CoreData : \(error.localizedDescription) ")
+            }
+        }
     }
 }
 
+
 extension Article {
-    convenience init?(fromCoreDataArticle coreDataObject:CDArticle) {
+    init?(fromCoreDataArticle coreDataObject:CDArticle) {
         guard let id = coreDataObject.id,
               let articleName = coreDataObject.articleName,
               let articleShelf = coreDataObject.articleShelf else {
             return nil
         }
-        self.init(nameOfArticle: articleName, shelf: articleShelf)
         self.id = id
         self.articleName = articleName
+        self.articleShelf = articleShelf
         self.articlePriority = Int (coreDataObject.articlePriority)
         self.freqOfAppro = Int(coreDataObject.freqOfAppro)
         
+    }
+}
+
+extension Shelf {
+    init?(fromCoreDataShelf coreDataObject:CDShelf) {
+        guard let id = coreDataObject.id,
+              let shelfName = coreDataObject.shelfName,
+              let shelfDescription = coreDataObject.shelfDescription else {
+            return nil
+        }
+        self.id = id
+        self.shelfName = shelfName
+        self.ShelfDescription = shelfDescription
     }
 }
